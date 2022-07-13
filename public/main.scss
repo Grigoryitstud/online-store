@@ -1,0 +1,278 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box; /*размер блока не зависит от отступов*/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+h3 {
+  text-align: center;
+}
+
+#body {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1480px;
+  background-color: #fff;
+  display: grid;
+
+  grid-template-areas:
+    "a"
+    "b";
+  gap: 10px;
+  grid-template-rows: 100px 1fr;
+
+  .header {
+    grid-area: a;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: red;
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .control {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+  }
+  .main {
+    grid-area: b;
+    display: flex;
+    gap: 10px;
+    .select {
+      position: sticky;
+      top: 150px;
+      left: 0;
+      padding: 10px 3px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      background-color: rgb(187, 110, 110);
+      .category {
+        cursor: pointer;
+      }
+      .colors {
+        width: 100%;
+        display: flex;
+        gap: 5px;
+        .redd {
+          width: 20px;
+          height: 20px;
+          border-radius: 100%;
+          background-color: red;
+        }
+        .greenn {
+          width: 20px;
+          height: 20px;
+          border-radius: 100%;
+          background-color: green;
+        }
+        .bluee {
+          width: 20px;
+          height: 20px;
+          border-radius: 100%;
+          background-color: blue;
+        }
+        .goldd {
+          width: 20px;
+          height: 20px;
+          border-radius: 100%;
+          background-color: gold;
+        }
+      }
+    }
+    .products {
+      width: 100%;
+      .products__header {
+        width: 100%;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 30px 30px 200px 1fr 220px;
+        gap: 10px;
+        .dots {
+          display: block;
+          position: relative;
+          width: 30px;
+          height: 30px;
+          border: 2px solid black;
+          border-radius: 7px;
+
+          & span {
+            background-color: black;
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 100%;
+            bottom: 15%;
+            left: 15%;
+          }
+
+          &:before,
+          &:after {
+            content: "";
+            background-color: black;
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 100%;
+            top: 15%;
+          }
+
+          &:before {
+            left: 15%;
+          }
+
+          &:after {
+            right: 15%;
+          }
+          &.active {
+            background-color: black;
+            & span {
+              background-color: white;
+            }
+            &:before,
+            &:after {
+              content: "";
+              background-color: white;
+            }
+          }
+        }
+        .lines {
+          display: block;
+          position: relative;
+          width: 30px;
+          height: 30px;
+          border: 2px solid black;
+          border-radius: 7px;
+
+          & span {
+            background-color: black;
+            position: absolute;
+            width: 70%;
+            height: 2px;
+            right: 15%;
+            top: 20%;
+          }
+
+          &:before,
+          &:after {
+            content: "";
+            background-color: black;
+            position: absolute;
+            width: 70%;
+            height: 2px;
+            right: 15%;
+          }
+
+          &:before {
+            bottom: 45%;
+          }
+
+          &:after {
+            bottom: 20%;
+          }
+          &.active {
+            background-color: black;
+            & span {
+              background-color: white;
+            }
+            &:before,
+            &:after {
+              content: "";
+              background-color: white;
+            }
+          }
+        }
+        .number-of-products {
+          margin: auto 25px;
+          #n {
+            margin-right: 5px;
+          }
+        }
+        .line {
+          margin: auto 0;
+          background-color: rgb(105, 104, 104);
+          height: 1px;
+        }
+        .sort {
+          right: 0px;
+          margin: auto 0;
+        }
+      }
+      .products__main {
+        display: flex;
+        flex-wrap: wrap;
+        .product {
+          display: none;
+          &.active {
+            overflow: hidden;
+            width: 400px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            .product__img {
+              width: 100%;
+              max-width: 400px;
+              height: 90%;
+            }
+            .product__about {
+              height: 10%;
+              display: flex;
+              justify-content: space-around;
+            }
+            .inline {
+              display: none;
+            }
+          }
+        }
+        &.active {
+          flex-direction: column;
+          .product {
+            display: none;
+            &.active {
+              overflow: hidden;
+              width: 100%;
+              height: 350px;
+              display: flex;
+              flex-direction: row;
+              gap: 10px;
+
+              .product__img {
+                width: auto;
+                height: 90%;
+              }
+              .product__about {
+                height: 100%;
+                padding: 20px 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                .inline {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
