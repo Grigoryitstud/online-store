@@ -26,7 +26,7 @@
     <section class="main">
       <div class="select">
         <dt><h3>Category</h3></dt>
-        <dd class="category">All</dd>
+        <dd class="category active">All</dd>
         <dd class="category">Office</dd>
         <dd class="category">Living Room</dd>
         <dd class="category">Kitchen</dd>
@@ -36,23 +36,23 @@
 
         <div>
           <h3>Company</h3>
-          <select name="user_city" id="company">
-            <option class="company" value="all">all</option>
-            <option class="company" value="Liddy">Liddy</option>
-            <option class="company" value="Marcos">Marcos</option>
-            <option class="company" value="Caressa">Caressa</option>
-            <option class="company" value="Ikea">Ikea</option>
+          <select name="user_city" class="company">
+            <option value="All">All</option>
+            <option value="Liddy">Liddy</option>
+            <option value="Marcos">Marcos</option>
+            <option value="Caressa">Caressa</option>
+            <option value="Ikea">Ikea</option>
           </select>
         </div>
 
         <div>
           <h3>Colors</h3>
           <div class="colors">
-            <div>All</div>
-            <div class="redd"></div>
-            <div class="greenn"></div>
-            <div class="bluee"></div>
-            <div class="goldd"></div>
+            <div class="color" id="All">All</div>
+            <div class="color" id="red"></div>
+            <div class="color" id="green"></div>
+            <div class="color" id="blue"></div>
+            <div class="color" id="black"></div>
           </div>
         </div>
 
@@ -60,6 +60,7 @@
           <h3>Price</h3>
           $<span id="w">3000</span><br />
           <input
+            id="price"
             type="range"
             min="0"
             max="3000"
@@ -68,14 +69,14 @@
           />
         </div>
 
-        <form>
+        <form id="checkbox">
           <label
-            >Free Shipping <input type="checkbox" id="checkbox-id"
+            >Free Shipping <input type="checkbox" id="checkbox-id" checked
           /></label>
         </form>
 
         <div>
-          <button>Clear Filters</button>
+          <button class="btn">Clear Filters</button>
         </div>
       </div>
       <section class="products">
@@ -96,11 +97,11 @@
 
           <h3 class="sort">
             Sort By
-            <select name="user_city">
-              <option class="all" value="1">price(Lowest)</option>
-              <option class="Liddy" value="2">price(Highest)</option>
-              <option class="Marcos" value="3">name(A-Z)</option>
-              <option class="Caressa" value="4">name(Z-A)</option>
+            <select name="user_city" id="sort">
+              <option class="all" value="price(Lowest)">price(Lowest)</option>
+              <option class="Liddy" value="price(Highest)">price(Highest)</option>
+              <option class="Marcos" value="name(A-Z)">name(A-Z)</option>
+              <option class="Caressa" value="name(Z-A)">name(Z-A)</option>
             </select>
           </h3>
         </div>

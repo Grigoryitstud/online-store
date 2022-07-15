@@ -1,104 +1,125 @@
-import { products } from "./products";
-const products__main: HTMLElement = document.getElementById("products__main") as HTMLElement;
-const category = document.getElementsByClassName("category") as HTMLCollectionOf<HTMLElement>;
-const company = document.getElementById("company") as HTMLElement;
-const product = document.getElementsByClassName("product") as HTMLCollectionOf<HTMLElement>;
-const dots = document.querySelector(".dots") as HTMLElement;
-const lines = document.querySelector(".lines") as HTMLElement;
+import { slicerProducts } from "./setProducts";
+import { setProducts } from "./setProducts";
+import { sortProducts } from "./sortProducts";
 
-interface slicer {
-  cost: number,
-  сategory: string,
-  available: string,
-  brand: string,
-  colors: string
-}
-let slicerProducts: slicer = {
-  cost: 3000,
-  сategory: "All",
-  available: "All",
-  brand: "All",
-  colors: "All"
-};
-// const slicerProducts: slicer;
+export const sorts = document.getElementById('sort') as HTMLElement;
 
-const setProducts = () => {
-  let imeges = products.map(
-    (prod) => {
-      if(slicerProducts.сategory !== "All") {
-        if(slicerProducts.available !== "All") {
-          if(slicerProducts.cost !== 3000) {
-            if(slicerProducts.brand !== "All") {
-              if(slicerProducts.colors !== "All") {
-                Array.from(prod.colors).forEach((el) => {
-                  if(el == slicerProducts.colors) {
-                        return `<div class="product active"><img class="product__img" src="${prod.img}" alt=""><div class="product__about"><h4>${prod.name}</h4><h4>${prod.cost}</h4><h4 class="inline">${prod.about}</h4><h4 class="inline">available: ${prod.available}</h4><h4 class="inline">SKU: ${prod.SKU}</h4><h4 class="inline">brand: ${prod.brand}</h4><h4 class="inline">Colors: ${prod.colors}</h4></div></div>`
-                      }
-                });
-              }
-              if(prod.cost == slicerProducts.cost) {
-                return `<div class="product active"><img class="product__img" src="${prod.img}" alt=""><div class="product__about"><h4>${prod.name}</h4><h4>${prod.cost}</h4><h4 class="inline">${prod.about}</h4><h4 class="inline">available: ${prod.available}</h4><h4 class="inline">SKU: ${prod.SKU}</h4><h4 class="inline">brand: ${prod.brand}</h4><h4 class="inline">Colors: ${prod.colors}</h4></div></div>`
-              }
-            }
-            if(prod.cost <= slicerProducts.cost) {
-              return `<div class="product active"><img class="product__img" src="${prod.img}" alt=""><div class="product__about"><h4>${prod.name}</h4><h4>${prod.cost}</h4><h4 class="inline">${prod.about}</h4><h4 class="inline">available: ${prod.available}</h4><h4 class="inline">SKU: ${prod.SKU}</h4><h4 class="inline">brand: ${prod.brand}</h4><h4 class="inline">Colors: ${prod.colors}</h4></div></div>`
-            }
-          }
-          if(prod.available == slicerProducts.сategory) {
-            return `<div class="product active"><img class="product__img" src="${prod.img}" alt=""><div class="product__about"><h4>${prod.name}</h4><h4>${prod.cost}</h4><h4 class="inline">${prod.about}</h4><h4 class="inline">available: ${prod.available}</h4><h4 class="inline">SKU: ${prod.SKU}</h4><h4 class="inline">brand: ${prod.brand}</h4><h4 class="inline">Colors: ${prod.colors}</h4></div></div>`
-          }
-        }
-        if(prod.сategory == slicerProducts.сategory) {
-          return `<div class="product active"><img class="product__img" src="${prod.img}" alt=""><div class="product__about"><h4>${prod.name}</h4><h4>${prod.cost}</h4><h4 class="inline">${prod.about}</h4><h4 class="inline">available: ${prod.available}</h4><h4 class="inline">SKU: ${prod.SKU}</h4><h4 class="inline">brand: ${prod.brand}</h4><h4 class="inline">Colors: ${prod.colors}</h4></div></div>`
-        }
-      } else return `<div class="product active"><img class="product__img" src="${prod.img}" alt=""><div class="product__about"><h4>${prod.name}</h4><h4>${prod.cost}</h4><h4 class="inline">${prod.about}</h4><h4 class="inline">available: ${prod.available}</h4><h4 class="inline">SKU: ${prod.SKU}</h4><h4 class="inline">brand: ${prod.brand}</h4><h4 class="inline">Colors: ${prod.colors}</h4></div></div>`
-    }
-     
-  );
-  products__main.innerHTML = imeges.join("");
-};
-setProducts();
+const company = document.querySelector(".company") as HTMLElement;
+export const products__main: HTMLElement = document.getElementById(
+  "products__main"
+) as HTMLElement;
+const category = document.getElementsByClassName(
+  "category"
+) as HTMLCollectionOf<HTMLElement>;
+const color = document.getElementsByClassName(
+  "color"
+) as HTMLCollectionOf<HTMLElement>;
+export const price = document.getElementById("price") as HTMLElement;
+export const checkbox = document.getElementById("checkbox-id") as HTMLElement;
+export const btn = document.querySelector(".btn") as HTMLElement;
+export const dots = document.querySelector(".dots") as HTMLElement;
+export const lines = document.querySelector(".lines") as HTMLElement;
+
 const changeDotsClass = () => {
   dots.classList.add("active");
   lines.classList.remove("active");
   products__main.classList.remove("active");
 };
+
 const changeLinesClass = () => {
   lines.classList.add("active");
   dots.classList.remove("active");
   products__main.classList.add("active");
 };
-const changeCategory = (a: string) => {
-  slicerProducts.сategory = a;
-  setProducts();
-  console.log(a);
-};
-const changeCompany = (a: string) => {
-  slicerProducts.brand = a;
-  setProducts();
-  console.log(a);
-};
-Array.from(category).forEach((box) => {
-  box.addEventListener("click", function () {
-    changeCategory(box.innerText);
-  });
-  console.log(box.innerText);
-});
-
-company.onchange = () => {
-  console.log(company.value);
-};
-
-// Array.from(company).forEach((box) => {
-//   box.addEventListener("click", function () {
-//     changeCompany(box.innerText);
-//   });
-//   console.log(box.innerText);
-// });
-
-// for (let i = 0; i < category.length; i++) {
-//   category[i].addEventListener('click', changeCategory(category[i].innerHTML: any));
-// }
 
 dots.addEventListener("click", changeDotsClass);
 lines.addEventListener("click", changeLinesClass);
+
+setProducts();
+
+const changeCategory = (a: HTMLElement) => {
+  Array.from(category).forEach((box) => {
+    box.classList.remove('active')
+  });
+    a.classList.add('active')
+
+  slicerProducts.сategory = a.innerText;
+  console.log(slicerProducts);
+  setProducts();
+  
+};
+Array.from(category).forEach((box) => {
+  box.addEventListener("click", function () {
+    changeCategory(box as HTMLElement);
+  });
+  console.log(box as HTMLElement);
+});
+
+
+const changeCompany = (a: any) => {
+  slicerProducts.brand = a.value;
+  console.log(slicerProducts);
+  setProducts();
+  console.log(a);
+};
+
+company.addEventListener("change", (event) => {
+  changeCompany(event.target);
+});
+
+const changeColor = (a: HTMLElement) => {
+  Array.from(color).forEach((box) => {
+    box.classList.remove('active')
+  });
+  if(a.id !== "All"){
+    a.classList.add('active')
+  };
+  slicerProducts.colors = a.id;
+  setProducts();
+  console.log(slicerProducts);
+};
+
+Array.from(color).forEach((box) => {
+  box.addEventListener("click", function () {
+    changeColor(box as HTMLElement);
+  });
+});
+
+const changePrice = (a: any) => {
+  slicerProducts.cost = a.value;
+  console.log(slicerProducts);
+  setProducts();
+  console.log(a);
+};
+
+price.addEventListener("change", (event) => {
+  changePrice(event.target);
+  console.log(event);
+});
+
+const changeFree = (a: any) => {
+  if(a.checked !== true) {
+    slicerProducts.available = "Out Of Stock";
+  } else slicerProducts.available = "All";
+  console.log(slicerProducts);
+  setProducts();
+  console.log(a.checked);
+};
+
+checkbox.addEventListener("click", function () {
+  changeFree(checkbox);
+});
+
+btn.addEventListener("click", function () {
+  slicerProducts.cost = 3000;
+  slicerProducts.сategory = "All";
+  slicerProducts.available = "All";
+  slicerProducts.brand = "All";
+  slicerProducts.colors = "All";
+  setProducts();
+});
+
+sorts.addEventListener("change", (event) => {
+  sortProducts(event.target);
+});
+
